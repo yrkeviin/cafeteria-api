@@ -24,5 +24,46 @@ const router = {
                 error: error.message,
             });
         }
-    }
+    },
+
+    totalCafes: (req, res) => {
+        try {
+            const cafes = list.totalCafes();
+            res.status(200).json(cafes);
+        } catch (error) {
+            res.status(400).json({
+                message: "Erro ao listar cafés",
+                error: error.message,
+            });
+        }
+    },
+
+    buscarCafePorId: (req, res) => {
+        try {
+            const { id } = req.params;
+            res.status(200).json(list.buscarCafePorId(id));
+        } catch (error) {
+            res.status(404).json({
+                message: "Erro ao buscar café",
+                error: error.message,
+            });
+        }
+    },
+
+    deletarCafe: (req, res) => {
+        try {
+            const cafe = req.params.id;
+            res.status(200).json({
+                message: "Café deletado com sucesso",
+                cafe: list.deleteCafe(cafe),
+            });
+        } catch (error) {
+            res.status(400).json({
+                message: "Erro ao deletar café",
+                error: error.message,
+            });
+        }
+    },
 }
+
+module.exports = router;
