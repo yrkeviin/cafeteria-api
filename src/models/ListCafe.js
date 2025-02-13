@@ -1,25 +1,23 @@
+const Cafe = require("./Cafe");
 class ListCafe {
     constructor() {
         this.cafes = [];
-        this.proximoId = 1;
     }
-    addCafe(pedido, cliente, valor) {
-        const newCafe = new Cafe(this.proximoId++, pedido, cliente, valor);
-        this.cafes.push(newCafe);
-        return newCafe;
+    addCafe(cafe) {
+        this.cafes.push(cafe);
     }
     totalCafes() {
         return this.cafes;
     }
     buscarCafePorId(id) {
-        return this.cafes.find(cafe => cafe.id === id);
+        const cafe = this.cafes.find(cafe => cafe.id == id);
+        if (!cafe) {
+            throw new Error("Café não encontrado");
+        }
+        return cafe;
     }
     deleteCafe(id) {
-        const index = this.cafes.findIndex(cafe => cafe.id === id);
-        if (index !== -1) {
-            return this.cafes.splice(index, 1)[0];
-        }
-        return null;
+        this.cafes = this.cafes.filter((cafe) => cafe.id != id);
     }
 }
 

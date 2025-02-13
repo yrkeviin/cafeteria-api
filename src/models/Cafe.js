@@ -1,8 +1,8 @@
 const { v4: uuidv4 } = require('uuid');
 
 class Cafe {
-    constructor(id, pedido, cliente, valor) {
-        this.id = id;
+    constructor(pedido, cliente, valor) {
+        this.id = uuidv4();
         this.pedido = pedido;
         this.cliente = cliente;
         this.valor = valor;

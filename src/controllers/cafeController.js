@@ -40,7 +40,7 @@ const router = {
 
     buscarCafePorId: (req, res) => {
         try {
-            const { id } = req.params;
+            const id = req.params.id;
             res.status(200).json(list.buscarCafePorId(id));
         } catch (error) {
             res.status(404).json({
@@ -53,9 +53,9 @@ const router = {
     deletarCafe: (req, res) => {
         try {
             const cafe = req.params.id;
+            list.deleteCafe(cafe);
             res.status(200).json({
-                message: "Café deletado com sucesso",
-                cafe: list.deleteCafe(cafe),
+                message: "Café deletado com sucesso", cafe,
             });
         } catch (error) {
             res.status(400).json({
