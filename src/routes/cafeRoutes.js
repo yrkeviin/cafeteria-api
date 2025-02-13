@@ -6,3 +6,5 @@ router.get("/menu", cafeController.listarCafes);
 router.post("/order", cafeController.adicionarCafe);
 router.get("/order/:id", cafeController.buscarCafePorId);
 router.delete("/order/:id", cafeController.deletarCafe);
+
+module.exports = router;
