@@ -1,10 +1,11 @@
-## Get all
+# Get all
 http://localhost:4000/api/menu
 
-## Get by Id
+# Get by Id
 http://localhost:4000/api/order/1ebd6473-e5ae-417f-8aea-99b859f8d983
 
 # Add cafe json(raw)
+http://localhost:4000/api/order
 {
     "pedido": "Chocolate quente",
     "cliente": "Kevin",
