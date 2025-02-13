@@ -55,7 +55,7 @@ const router = {
             const cafe = req.params.id;
             list.deleteCafe(cafe);
             res.status(200).json({
-                message: "Café deletado com sucesso", cafe,
+                message: "Café deletado com sucesso",
             });
         } catch (error) {
             res.status(400).json({
