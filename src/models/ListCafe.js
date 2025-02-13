@@ -6,7 +6,7 @@ class ListCafe {
         this.proximoId = 1;
     }
     addCafe(pedido, cliente, valor) {
-        const newCafe = new newCafe(this.proximoId++, pedido, cliente, valor);
+        const newCafe = new Cafe(this.proximoId++, pedido, cliente, valor);
         this.cafes.push(newCafe);
         return newCafe;
     }
@@ -25,4 +25,4 @@ class ListCafe {
     }
 }
 
-module.exports = new ListCafe();
+module.exports = ListCafe;
