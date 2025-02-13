@@ -1,32 +1,28 @@
+const Cafe = require("../models/Cafe");
 const listCafe = require("../models/ListCafe");
 
-const listCafe = (req, res) => {
-    res.json(listCafe.totalCafes());
-}
+const list = new listCafe();
 
-const addCafe = (req, res) => {
-    const { pedido, cliente, valor } = req.body;
-    if (!pedido || !cliente || !valor) {
-        return res.status(400).json({ error: "Pedido, cliente e valor são obrigatórios." });
+const cafe1 = new Cafe("Café com leite", "Fernanda", 5);
+list.addCafe(cafe1);
+
+list.addCafe(new Cafe("Café preto", "Trixie", 3));
+
+const router = {
+    addCafe: (req, res) => {
+        try {
+            const { pedido, cliente, valor } = req.body;
+            if (!pedido || !cliente || !valor) {
+                throw new Error("Pedido, cliente e valor são obrigatórios");
+            }
+            const cafe = new Cafe(pedido, cliente, valor);
+            list.addCafe(cafe);
+            res.status(201).json({ message: "Café adicionado com sucesso", cafe });
+        } catch (error) {
+            res.status(400).json({
+                message: "Erro ao adicionar café",
+                error: error.message,
+            });
+        }
     }
-    const newCafe = listCafe.addCafe(pedido, cliente, valor);
-    res.status(201).json(newCafe);
 }
-
-const buscarCafe = (req, res) => {
-    const cafe = listCafe.buscarCafePorId(parseInt(req.params.id));
-    if (!cafe) {
-        return res.status(404).json({ error: "Café não encontrado." });
-    }
-    res.json(cafe);
-}
-
-const deleteCafe = (req, res) => {
-    const cafeDeleted = listCafe.deleteCafe(parseInt(req.params.id));
-    if (!cafeDeleted) {
-        return res.status(404).json({ error: "Café não encontrado." });
-    }
-    res.json({ message: "Café deletado com sucesso.", cafe: cafeDeleted });
-}
-
-module.exports = { listCafe, addCafe, buscarCafe, deleteCafe };

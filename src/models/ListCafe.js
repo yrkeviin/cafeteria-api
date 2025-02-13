@@ -1,5 +1,3 @@
-const Cafe = require("./Cafe");
-
 class ListCafe {
     constructor() {
         this.cafes = [];
